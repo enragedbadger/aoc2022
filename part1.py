@@ -2,7 +2,7 @@
 
 
 def day6():
-    with open("./inputs/day6.txt", "r") as f:
+    with open("./inputs/day6", "r") as f:
         data = f.read()
 
     res = []
@@ -27,7 +27,7 @@ def day5():
         8: ["F", "J", "Z", "S"],
         9: ["M", "C", "D", "P", "F", "H", "B", "T"],
     }
-    with open("./inputs/day5.txt", "r") as f:
+    with open("./inputs/day5", "r") as f:
         data = f.read()
     data = data.split("\n")
 
@@ -46,7 +46,7 @@ def day5():
 
 
 def day4():
-    with open("./inputs/day4.txt", "r") as f:
+    with open("./inputs/day4", "r") as f:
         data = f.read()
     data = data.split("\n")
     count1 = 0
@@ -68,7 +68,7 @@ def day4():
 def day3():
     from string import ascii_lowercase
 
-    with open("./inputs/day3.txt", "r") as f:
+    with open("./inputs/day3", "r") as f:
         data = f.read()
     data = data.split("\n")
 
@@ -96,7 +96,7 @@ def day2():
     points1 = {"A X": 4, "A Y": 8, "A Z": 3, "B X": 1, "B Y": 5, "B Z": 9, "C X": 7, "C Y": 2, "C Z": 6}
     points2 = {"A X": 3, "A Y": 4, "A Z": 8, "B X": 1, "B Y": 5, "B Z": 9, "C X": 2, "C Y": 6, "C Z": 7}
 
-    with open("./inputs/day2.txt", "r") as f:
+    with open("./inputs/day2", "r") as f:
         data = f.read()
     data = data.split("\n")
 
@@ -106,7 +106,7 @@ def day2():
 
 
 def day1():
-    with open("./inputs/day1.txt", "r") as f:
+    with open("./inputs/day1", "r") as f:
         data = f.read()
 
     data = [d.split("\n") for d in data.split("\n\n")]

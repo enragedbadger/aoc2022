@@ -2,7 +2,7 @@
 
 
 def day7():
-    with open("./inputs/day7.txt", "r") as f:
+    with open("./inputs/day7", "r") as f:
         data = f.read()
     data = data.split("\n")
     data = [d.split() for d in data]
