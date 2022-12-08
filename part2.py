@@ -1,4 +1,32 @@
 # Advent of Code 2022 - part 2 of N
+import numpy as np
+
+
+def day8():
+    with open("./inputs/day8", "r") as f:
+        data = f.read()
+
+    data = [[int(d) for d in d] for d in data.splitlines()]
+    data = np.asarray(data)
+
+    vis = np.ones(data.shape)
+    score = np.ones(data.shape)
+
+    for row in range(1, data.shape[0] - 1):
+        for col in range(1, data.shape[0] - 1):
+            # Left, right, top, bottom - left and top are reversed because we are looking away from (row,col)
+            surrounds = [data[row, :col][::-1], data[row, col + 1 :], data[:row, col][::-1], data[row + 1 :, col]]
+            max_surrounds = [np.max(s) for s in surrounds]
+            vis[row, col] = np.any(max_surrounds < data[row, col])
+
+            for s in surrounds:
+                check = s >= data[row, col]
+                if not np.any(check):  # All false means we only care about the length of the array
+                    score[row, col] *= len(check)
+                else:  # Find first instance of a tree as tall or taller - this is why we need reveresed left and top
+                    score[row, col] *= np.argmax(check) + 1
+
+    return np.sum(vis), np.max(score)
 
 
 def day7():
