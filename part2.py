@@ -2,6 +2,31 @@
 import numpy as np
 
 
+def day9():
+    with open("./inputs/day9", "r") as f:
+        data = f.read().splitlines()
+
+    nav = {
+        "U": np.asarray([-1, 0]),
+        "D": np.asarray([1, 0]),
+        "L": np.asarray([0, -1]),
+        "R": np.asarray([0, 1]),
+    }
+    H = np.asarray([0, 0])
+    T = [np.asarray([0, 0])]
+    for motion in data:
+        direction, size = motion.split()
+        for __ in range(int(size)):
+            H += nav[direction]
+            if np.linalg.norm(H - T[-1]) > 1.5:  # greater than sqrt(2)
+                T.append(T[-1] + nav[direction])
+                # if after move _still_ diagonal
+                if np.isclose(np.linalg.norm(H - T[-1]), np.sqrt(2)):
+                    # move again
+                    T[-1] = H - nav[direction]
+    return len(set(map(tuple, T)))
+
+
 def day8():
     with open("./inputs/day8", "r") as f:
         data = f.read()
