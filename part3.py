@@ -12,6 +12,14 @@ def update_crt(crt, X, cycle):
         crt[x][y] = "#"
 
 
+def update_cycle(cycle, X, signal, crt):
+    cycle += 1
+    if not (cycle + 20) % 40:
+        signal.append(cycle * X)
+    update_crt(crt, X, cycle)
+    return cycle
+
+
 def day10():
     with open("./inputs/day10", "r") as f:
         data = f.read().splitlines()
@@ -21,42 +29,16 @@ def day10():
     signal = []
 
     crt = [["." for __ in range(40)] for __ in range(6)]
-    show_crt(crt)
 
     for d in data:
         match d.split(" "):
             case ["noop"]:
-                cycle += 1
-                print(f"start of {cycle=}")
-                print("do nothing")
-                if not (cycle + 20) % 40:
-                    signal.append(cycle * X)
-                    print("interesting signal strength!")
-                update_crt(crt, X, cycle)
-                print(f"end of {cycle=}, {X=}")
+                cycle = update_cycle(cycle, X, signal, crt)
 
             case ["addx", val]:
-                val = int(val)
-
-                cycle += 1
-                print(f"start of {cycle=}. `addx {val}` started.")
-                print("wait")
-                if not (cycle + 20) % 40:
-                    signal.append(cycle * X)
-                    print("interesting signal strength!")
-                update_crt(crt, X, cycle)
-                print(f"end of {cycle=}, {X=}")
-
-                cycle += 1
-                print(f"start of {cycle=}")
-                print("wait")
-                if not (cycle + 20) % 40:
-                    signal.append(cycle * X)
-                    print("interesting signal strength!")
-                update_crt(crt, X, cycle)
-
-                X += val
-                print(f"end of {cycle=}. `addx {val}` completed! {X=}")
+                cycle = update_cycle(cycle, X, signal, crt)
+                cycle = update_cycle(cycle, X, signal, crt)
+                X += int(val)
 
     show_crt(crt)
     return sum(signal)
