@@ -1,4 +1,4 @@
-# Advent of Code 2022 - part 3 of N
+# Advent of Code 2022 - day 10
 
 
 def show_crt(crt):
@@ -20,7 +20,7 @@ def update_cycle(cycle, X, signal, crt):
     return cycle
 
 
-def day10():
+def run():
     with open("./inputs/day10", "r") as f:
         data = f.read().splitlines()
 
@@ -45,9 +45,4 @@ def day10():
 
 
 if __name__ == "__main__":
-    for day in range(25):
-        try:
-            foo = locals()[f"day{day}"]
-            print(f"Advent of Code 2022: result for Day {day} is: {foo()}")
-        except KeyError:
-            pass
+    print(run())
